@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'dart:async'; // Import library dart:async untuk menggunakan Timer
-
-import 'package:appabsensi/screen/login_screen.dart'; 
+import 'package:presensi_app/screen/dashboard_screen.dart';
+import 'package:presensi_app/screen/login_screen.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Delay untuk menampilkan splash screen selama beberapa detik sebelum pindah ke halaman berikutnya
-    Timer(
-      const Duration(seconds: 2), // Ubah durasi sesuai kebutuhan Anda
-      () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => screenlogin()), 
-        );
-      },
-    );
+  Future.delayed(const Duration(seconds: 3)).then((value) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const LoginScreen(),
+          ),
+          (route) => false);
+    });
 
     return Scaffold(
       body: Center(
