@@ -1,32 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:appabsensi/screen/dashboard_screen.dart';
-import 'package:appabsensi/screen/login_screen.dart';
-import 'package:appabsensi/screen/splash_screen.dart';
-
+import 'package:presensi_app/screen/attandance_recap_screen.dart';
+import 'package:presensi_app/screen/dashboard_screen.dart';
+import 'package:presensi_app/screen/login_screen.dart';
+import 'package:presensi_app/screen/splash_screen.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(const MainApp());
 }
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'aplikasi absensi',
+      title:'Presensi App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/splash', // Set halaman awal aplikasi
-      routes: {
-        '/splash': (context) => LoadingScreen(),
-        '/login': (context) => screenlogin(),
-        '/dashboard': (context) => Dasboard(), // Tambahkan rute untuk halaman dashboard
-      },
+      home: const AttandanceRecapScreen(),
     );
-  }  
+  }
 }
-
-
