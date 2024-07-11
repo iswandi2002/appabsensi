@@ -29,7 +29,7 @@ class _LoginScreen extends State<LoginScreen> {
 
     if (username.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please enter your username and password')),
+ const SnackBar(content: Text('Please enter your username and password')),
       );
       return;
     }
@@ -54,6 +54,7 @@ class _LoginScreen extends State<LoginScreen> {
     }
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
+       final nik = responseBody['nik'];
       final token = responseBody['token'];
          final name = responseBody['nama'];
       final dept = responseBody['departemen'];
@@ -64,6 +65,7 @@ class _LoginScreen extends State<LoginScreen> {
        await prefs.setString('name', name);
       await prefs.setString('dept', dept);
       await prefs.setString('imgProfil', imgUrl);
+           await prefs.setString('nik', nik);
 
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => const DashboardScreen()),
@@ -71,7 +73,7 @@ class _LoginScreen extends State<LoginScreen> {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Invalid username or password')),
+        const SnackBar(content: Text('Invalid username or password')),
       );
     }
 
